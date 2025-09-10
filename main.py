@@ -18,8 +18,17 @@ print("Saved: datasets/titanic.csv", df.shape)
 """
 
 #Task 3
+"""
 df = pd.read_csv("datasets/titanic.csv")
 mean_age = df["Age"].mean()
 df["Age"] = df["Age"].fillna(mean_age)
 df.to_csv("datasets/titanic.csv", index=False)
 print("Saved: datasets/titanic.csv; mean_age =", mean_age)
+"""
+
+#Task 4
+df = pd.read_csv("datasets/titanic.csv")
+ohe = pd.get_dummies(df["Sex"], prefix="Sex", dtype=int)
+df = pd.concat([df.drop(columns=["Sex"]), ohe], axis=1)
+df.to_csv("datasets/titanic.csv", index=False)
+print("Saved: datasets/titanic.csv", df.shape)
